@@ -115,7 +115,13 @@ const Form = () => {
           size="large"
           type="submit"
           fullWidth
-          disabled={savingPost || !postData.title}
+          disabled={
+            savingPost ||
+            !postData.title ||
+            !postData.creator ||
+            !postData.message ||
+            !postData.selectedFile
+          }
         >
           {savingPost ? "Loading" : "Submit"}
         </Button>
