@@ -27,6 +27,10 @@ router.get("/:postId", async (req, res) => {
 router.post("/", async (req, res) => {
   const post = req.body;
 
+  const { title, message, creator, selectedFile } = post;
+  if (!title || !message || !creator || !selectedFile)
+    return res.status(400).json({ msg: "fill all values" });
+
   const newPost = new PostMessage(post);
   // console.log(req.headers["x-socket-id"]);
   pusher.trigger(
